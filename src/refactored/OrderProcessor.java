@@ -17,11 +17,27 @@ public class OrderProcessor {
 
 
     public void calculateTotal(double amount) {
-        double tax = amount * TAX_PERCENTAGE;
-        double serviceFee = amount > SERVICE_FEE_MIN_AMOUNT ? amount * SERVICE_FEE_PERCENTAGE : DEFAULT_SERVICE_FEE;
-        double discount = amount > DISCOUNT_MIN_AMOUNT ? FIXED_DISCOUNT : DEFAULT_DISCOUNT;
+        double tax = calculateTax(amount);
+        double serviceFee = calculateServiceFee(amount);
+        double discount = calculateDiscount(amount);
         double total = amount + tax + serviceFee - discount;
 
+        printOrderSummary(amount, tax, serviceFee, discount, total);
+    }
+
+    private double calculateTax(double amount) {
+        return amount * TAX_PERCENTAGE;
+    }
+
+    private double calculateServiceFee(double amount) {
+        return amount > SERVICE_FEE_MIN_AMOUNT ? amount * SERVICE_FEE_PERCENTAGE : DEFAULT_SERVICE_FEE;
+    }
+
+    private double calculateDiscount(double amount) {
+        return amount > DISCOUNT_MIN_AMOUNT ? FIXED_DISCOUNT : DEFAULT_DISCOUNT;
+    }
+
+    private void printOrderSummary(double amount, double tax, double serviceFee, double discount, double total) {
         System.out.println("Amount: " + amount);
         System.out.println("Tax: " + tax);
         System.out.println("Service Fee: " + serviceFee);

@@ -1,6 +1,11 @@
 
 public class DB {
 
+    // Tópico 3: Strings mágicos - constantes para mensajes literales repetidos
+    private static final String MSG_CONNECTING = "Connecting to ";
+    private static final String MSG_QUERYING = "Querying ";
+    private static final String MSG_DISCONNECTING = "Disconnecting from ";
+
     protected String databaseName;
 
     public DB(String databaseName) {
@@ -8,14 +13,14 @@ public class DB {
     }
 
     public void connect() {
-        System.out.println("Connecting to " + databaseName);
+        System.out.println(MSG_CONNECTING + databaseName);
     }
 
     public void query() {
-        System.out.println("Querying " + databaseName);
+        System.out.println(MSG_QUERYING + databaseName);
     }
 
     public void disconnect() {
-        System.out.println("Disconnecting from " + databaseName);
+        System.out.println(MSG_DISCONNECTING + databaseName);
     }
 }

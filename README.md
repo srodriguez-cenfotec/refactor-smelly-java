@@ -8,6 +8,7 @@ Refactorización de Código en Java
 2. Números mágicos: Utilice constantes con nombre en lugar de números en el código.
    - En la clase **OrderProcessor.java**, se crean constantes para valores fijos que se utilizan en las operaciones.
 3. Strings mágicos: Evite strings literales repetidos. Use constantes.
+   - En la clase **DB.java**, se definen constantes `MSG_CONNECTING`, `MSG_QUERYING` y `MSG_DISCONNECTING` para reemplazar los strings literales usados en los métodos `connect()`, `query()` y `disconnect()`.
 4. Constantes faltantes: Declare valores reutilizables como constantes estáticas.
    - En la clase **OrderProcessor.java**, se crean constantes para valores fijos que se utilizan en las operaciones.
 5. Métodos largos: Divida métodos extensos en varios métodos con una sola responsabilidad.

@@ -1,23 +1,25 @@
 
 public class ReportManager {
-    private String data;
+    private String reportData;
+    private final ReportEmailSender emailSender;
+    private final ReportStorage reportStorage;
 
-    public void setData(String d) {
-        this.data = d;
+    public ReportManager() {
+        this(new ConsoleReportEmailSender(), new DiskReportStorage());
+    }
+
+    public ReportManager(ReportEmailSender emailSender, ReportStorage reportStorage) {
+        this.emailSender = emailSender;
+        this.reportStorage = reportStorage;
+    }
+
+    public void setData(String reportData) {
+        this.reportData = reportData;
     }
 
     public void processReport() {
-        System.out.println("Processing report: " + data);
-        sendEmailReport();
-        saveReportToDisk();
-    }
-
-
-    private void sendEmailReport() {
-        System.out.println("Sending email report: " + data);
-    }
-
-    private void saveReportToDisk() {
-        System.out.println("Saving report to disk: " + data);
+        System.out.println("Processing report: " + reportData);
+        emailSender.send(reportData);
+        reportStorage.save(reportData);
     }
 }

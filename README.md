@@ -10,6 +10,7 @@ Refactorización de Código en Java
 3. Strings mágicos: Evite strings literales repetidos. Use constantes.
    - En la clase **DB.java**, se definen constantes `MSG_CONNECTING`, `MSG_QUERYING` y `MSG_DISCONNECTING` para reemplazar los strings literales usados en los métodos `connect()`, `query()` y `disconnect()`.
 4. Constantes faltantes: Declare valores reutilizables como constantes estáticas.
+   - En la clase **DB.java**, se cambió el campo `databaseName` de `protected` a `private final`, encapsulando correctamente el estado interno y evitando modificaciones externas.
    - En la clase **OrderProcessor.java**, se crean constantes para valores fijos que se utilizan en las operaciones.
 5. Métodos largos: Divida métodos extensos en varios métodos con una sola responsabilidad.
    - En la clase **ReportManager.java** se divide la lógica del método **processReport()** en varios métodos, cada uno con solo una responsabilidad

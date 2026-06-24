@@ -1,12 +1,13 @@
 
 public class DB {
 
-    // Tópico 3: Strings mágicos - constantes para mensajes literales repetidos
+    // Tópico 3: Strings mágicos
     private static final String MSG_CONNECTING = "Connecting to ";
     private static final String MSG_QUERYING = "Querying ";
     private static final String MSG_DISCONNECTING = "Disconnecting from ";
 
-    protected String databaseName;
+    // Tópico 4: Constantes faltantes
+    private final String databaseName;
 
     public DB(String databaseName) {
         this.databaseName = databaseName;

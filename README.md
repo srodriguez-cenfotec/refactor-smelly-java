@@ -9,8 +9,10 @@ Refactorización de Código en Java
 2. Números mágicos: Utilice constantes con nombre en lugar de números en el código.
    - En la clase **OrderProcessor.java**, se crean constantes para valores fijos que se utilizan en las operaciones.
 3. Strings mágicos: Evite strings literales repetidos. Use constantes.
+   - En la clase **DB.java**, se definen constantes `MSG_CONNECTING`, `MSG_QUERYING` y `MSG_DISCONNECTING` para reemplazar los strings literales usados en los métodos `connect()`, `query()` y `disconnect()`.
    - En la clase **UserHandlerImpl.java**, se eliminaron strings literales del código y se movieron a archivos de recursos (`messages.properties` y `messages_es.properties`) dentro del paquete `com.smelly.handlers`, usando `ResourceBundle`.
 4. Constantes faltantes: Declare valores reutilizables como constantes estáticas.
+   - En la clase **DB.java**, se cambió el campo `databaseName` de `protected` a `private final`, encapsulando correctamente el estado interno y evitando modificaciones externas.
    - En la clase **OrderProcessor.java**, se crean constantes para valores fijos que se utilizan en las operaciones.
    - En la clase **UserHandlerImpl.java**, se agregaron constantes estáticas para llaves de localización (`error.empty.user`, `welcome.message`, etc.) y para el nombre base del bundle.
 5. Métodos largos: Divida métodos extensos en varios métodos con una sola responsabilidad.
@@ -35,15 +37,20 @@ Refactorización de Código en Java
    - En la clase **ReportManager.java**, se crearon las clases **ConsoleReportEmailSender.java** y **DiskReportStorage.java** para separar el envío y el guardado del reporte.
 12. Bajo acoplamiento: Evite dependencias fuertes. Use interfaces y abstracción.
    - En la clase **ReportManager.java**, se agregaron las interfaces **ReportEmailSender.java** y **ReportStorage.java** para depender de abstracciones.
+   - En la clase **DB.java**, se extrajo un método privado `log()` que centraliza la salida de mensajes, evitando repetir `System.out.println()` en cada método.
+12. Bajo acoplamiento: Evite dependencias fuertes. Use interfaces y abstracción.
+   - Se creó la interfaz **DatabaseService.java** para que cualquier clase que use una base de datos dependa del contrato y no de la implementación concreta `DB`.
 13. Alta cohesión faltante: Mantenga métodos relacionados dentro de la misma clase.
    - En la clase **ReportManager.java**, se mantuvo solo la coordinación del reporte y se movieron las operaciones específicas a sus propias clases.
 14. KISS (Keep It Simple, Stupid): Evite lógica compleja innecesaria. Prefiera lo simple.
    - En la clase **UserHandlerImpl.java**, la validación quedó simplificada usando `isEmpty()` y una única función reutilizable de construcción de mensajes (`buildMessage`) con `MessageFormat` sobre `ResourceBundle`.
 15. Boy Scout Rule: Deje el código más limpio de como lo encontró. Elimine código muerto.
+   - En la clase **DB.java**, se agregó validación en el constructor para rechazar un `databaseName` nulo o vacío, dejando la clase en un estado siempre válido.
     - Se implementan paquetes para handlers
 16. Código no autodocumentado: Haga que el código se explique por sí mismo. Nombres y estructura clara.
    - En la clase **ReportManager.java**, se usaron nombres más claros como `reportData`, `emailSender` y `reportStorage`.
    - En la clase **UserHandlerImpl.java**, se agregaron tipos de retorno explícitos (`boolean` y `void`) en métodos privados para dejar el código claro y compilable.
 17. Falta de interfaces o clases base: Use interfaces para separar la definición de la implementación.
    - En la clase **ReportManager.java**, se crearon las interfaces **ReportEmailSender.java** y **ReportStorage.java** para separar el contrato de la implementación.
+   - Se creó la interfaz **DatabaseService.java** con los métodos `connect()`, `query()` y `disconnect()`, y **DB.java** la implementa, separando el contrato de la implementación.
    - En la carpeta **src/refactored/com/smelly/handlers** se creó la interfaz **UserHandler.java** con el contrato de `process`, `notify` y `print`, y la clase **UserHandlerImpl.java** ahora implementa esta interfaz.

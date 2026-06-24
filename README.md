@@ -32,6 +32,7 @@ Refactorización de Código en Java
 13. Alta cohesión faltante: Mantenga métodos relacionados dentro de la misma clase.
 14. KISS (Keep It Simple, Stupid): Evite lógica compleja innecesaria. Prefiera lo simple.
 15. Boy Scout Rule: Deje el código más limpio de como lo encontró. Elimine código muerto.
+   - En la clase **DB.java**, se agregó validación en el constructor para rechazar un `databaseName` nulo o vacío, dejando la clase en un estado siempre válido.
 16. Código no autodocumentado: Haga que el código se explique por sí mismo. Nombres y estructura clara.
 17. Falta de interfaces o clases base: Use interfaces para separar la definición de la implementación.
    - Se creó la interfaz **DatabaseService.java** con los métodos `connect()`, `query()` y `disconnect()`, y **DB.java** la implementa, separando el contrato de la implementación.

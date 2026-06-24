@@ -10,6 +10,10 @@ public class DB implements DatabaseService {
     private final String databaseName;
 
     public DB(String databaseName) {
+        // Tópico 15: Boy Scout Rule - validación para evitar estado inválido en la clase
+        if (databaseName == null || databaseName.isEmpty()) {
+            throw new IllegalArgumentException("databaseName cannot be null or empty");
+        }
         this.databaseName = databaseName;
     }
 

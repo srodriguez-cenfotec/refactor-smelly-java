@@ -57,3 +57,4 @@ Refactorización de Código en Java
    - En la clase **ReportManager.java**, se crearon las interfaces **ReportEmailSender.java** y **ReportStorage.java** para separar el contrato de la implementación.
    - Se creó la interfaz **DatabaseService.java** con los métodos `connect()`, `query()` y `disconnect()`, y **DB.java** la implementa, separando el contrato de la implementación.
    - En la carpeta **src/refactored/com/smelly/handlers** se creó la interfaz **UserHandler.java** con el contrato de `process`, `notify` y `print`, y la clase **UserHandlerImpl.java** ahora implementa esta interfaz.
+

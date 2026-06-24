@@ -29,7 +29,7 @@ public class DB implements DatabaseService {
         log(MSG_DISCONNECTING + databaseName);
     }
 
-    // Tópico 13: Alta cohesión faltante - operaciones relacionadas agrupadas en la misma clase
+    // Tópico 13: Alta cohesión faltante 
     public void reconnect() {
         disconnect();
         connect();

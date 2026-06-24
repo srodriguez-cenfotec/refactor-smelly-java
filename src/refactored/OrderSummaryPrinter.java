@@ -1,4 +1,4 @@
-// Tópico 11: Modularidad violada - clase con única responsabilidad de imprimir el resumen de una orden
+// Tópico 11: Modularidad violada
 public class OrderSummaryPrinter {
 
     public void print(double amount, double tax, double serviceFee, double discount, double total) {

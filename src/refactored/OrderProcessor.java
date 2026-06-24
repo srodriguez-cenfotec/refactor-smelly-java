@@ -9,7 +9,7 @@ public class OrderProcessor {
     public static final int DISCOUNT_MIN_AMOUNT = 500;
     public static final int FIXED_DISCOUNT = 50;
 
-    // Tópico 11: Modularidad violada - delega la impresión a una clase con esa única responsabilidad
+    // Tópico 11: Modularidad violada 
     private final OrderSummaryPrinter summaryPrinter = new OrderSummaryPrinter();
 
     public void calculateTotal(double amount) {

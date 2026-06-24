@@ -1,7 +1,7 @@
 
 public class ReportManager {
 
-    // Tópico 2: Números mágicos - constante para el mensaje de procesamiento
+    // Tópico 2: Números mágicos
     private static final String MSG_PROCESSING = "Processing report: ";
 
     private String reportData;
@@ -17,7 +17,7 @@ public class ReportManager {
         this.reportStorage = reportStorage;
     }
 
-    // Tópico 15: Boy Scout Rule - validación para evitar estado inválido en la clase
+    // Tópico 15: Boy Scout Rule
     public void setData(String reportData) {
         if (reportData == null || reportData.isEmpty()) {
             throw new IllegalArgumentException("reportData cannot be null or empty");
@@ -26,7 +26,7 @@ public class ReportManager {
     }
 
     public void processReport() {
-        // Tópico 14: KISS - flujo simple y directo, cada paso delega a un método con nombre claro
+        // Tópico 14: KISS
         logProcessing();
         emailSender.send(reportData);
         reportStorage.save(reportData);

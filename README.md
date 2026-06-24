@@ -8,6 +8,7 @@ Refactorización de Código en Java
    - En la clase **UserHandlerImpl.java** se centralizó el mensaje de error en `printErrorMessage()` para no repetir la misma impresión en varios métodos.
 2. Números mágicos: Utilice constantes con nombre en lugar de números en el código.
    - En la clase **OrderProcessor.java**, se crean constantes para valores fijos que se utilizan en las operaciones.
+   - En la clase **ReportManager.java**, se define la constante `MSG_PROCESSING` para reemplazar el string literal `"Processing report: "` usado en `processReport()`.
 3. Strings mágicos: Evite strings literales repetidos. Use constantes.
    - En la clase **DB.java**, se definen constantes `MSG_CONNECTING`, `MSG_QUERYING` y `MSG_DISCONNECTING` para reemplazar los strings literales usados en los métodos `connect()`, `query()` y `disconnect()`.
    - En la clase **UserHandlerImpl.java**, se eliminaron strings literales del código y se movieron a archivos de recursos (`messages.properties` y `messages_es.properties`) dentro del paquete `com.smelly.handlers`, usando `ResourceBundle`.
@@ -35,18 +36,20 @@ Refactorización de Código en Java
     - En la clase **ReportManager.java**, se reemplaza el tipo del campo **data** para que este sea un **String** en lugar de un **Object**.
 11. Modularidad violada: Separe el código en clases con una sola responsabilidad.
    - En la clase **ReportManager.java**, se crearon las clases **ConsoleReportEmailSender.java** y **DiskReportStorage.java** para separar el envío y el guardado del reporte.
+   - En la clase **OrderProcessor.java**, se extrajo la lógica de impresión a la clase **OrderSummaryPrinter.java**, dejando a `OrderProcessor` con la única responsabilidad de calcular.
 12. Bajo acoplamiento: Evite dependencias fuertes. Use interfaces y abstracción.
    - En la clase **ReportManager.java**, se agregaron las interfaces **ReportEmailSender.java** y **ReportStorage.java** para depender de abstracciones.
    - En la clase **DB.java**, se extrajo un método privado `log()` que centraliza la salida de mensajes, evitando repetir `System.out.println()` en cada método.
-12. Bajo acoplamiento: Evite dependencias fuertes. Use interfaces y abstracción.
    - Se creó la interfaz **DatabaseService.java** para que cualquier clase que use una base de datos dependa del contrato y no de la implementación concreta `DB`.
 13. Alta cohesión faltante: Mantenga métodos relacionados dentro de la misma clase.
    - En la clase **ReportManager.java**, se mantuvo solo la coordinación del reporte y se movieron las operaciones específicas a sus propias clases.
+   - En la clase **DB.java**, se agregó el método `reconnect()` que agrupa `disconnect()` y `connect()` como una operación cohesiva dentro de la misma clase.
 14. KISS (Keep It Simple, Stupid): Evite lógica compleja innecesaria. Prefiera lo simple.
    - En la clase **UserHandlerImpl.java**, la validación quedó simplificada usando `isEmpty()` y una única función reutilizable de construcción de mensajes (`buildMessage`) con `MessageFormat` sobre `ResourceBundle`.
+   - En la clase **ReportManager.java**, el método `processReport()` se simplificó extrayendo el log a `logProcessing()`, dejando el flujo principal con pasos claros y directos sin lógica mezclada.
 15. Boy Scout Rule: Deje el código más limpio de como lo encontró. Elimine código muerto.
    - En la clase **DB.java**, se agregó validación en el constructor para rechazar un `databaseName` nulo o vacío, dejando la clase en un estado siempre válido.
-    - Se implementan paquetes para handlers
+   - En la clase **ReportManager.java**, se agregó validación en `setData()` para rechazar un `reportData` nulo o vacío, evitando que la clase opere con datos inválidos.
 16. Código no autodocumentado: Haga que el código se explique por sí mismo. Nombres y estructura clara.
    - En la clase **ReportManager.java**, se usaron nombres más claros como `reportData`, `emailSender` y `reportStorage`.
    - En la clase **UserHandlerImpl.java**, se agregaron tipos de retorno explícitos (`boolean` y `void`) en métodos privados para dejar el código claro y compilable.
@@ -54,3 +57,4 @@ Refactorización de Código en Java
    - En la clase **ReportManager.java**, se crearon las interfaces **ReportEmailSender.java** y **ReportStorage.java** para separar el contrato de la implementación.
    - Se creó la interfaz **DatabaseService.java** con los métodos `connect()`, `query()` y `disconnect()`, y **DB.java** la implementa, separando el contrato de la implementación.
    - En la carpeta **src/refactored/com/smelly/handlers** se creó la interfaz **UserHandler.java** con el contrato de `process`, `notify` y `print`, y la clase **UserHandlerImpl.java** ahora implementa esta interfaz.
+

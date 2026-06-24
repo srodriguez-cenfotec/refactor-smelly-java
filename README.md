@@ -26,6 +26,7 @@ Refactorización de Código en Java
 10. Uso incorrecto de Object: Evite usar Object sin generics. Use tipado fuerte para claridad.
     - En la clase **ReportManager.java**, se reemplaza el tipo del campo **data** para que este sea un **String** en lugar de un **Object**.
 11. Modularidad violada: Separe el código en clases con una sola responsabilidad.
+   - En la clase **DB.java**, se extrajo un método privado `log()` que centraliza la salida de mensajes, evitando repetir `System.out.println()` en cada método.
 12. Bajo acoplamiento: Evite dependencias fuertes. Use interfaces y abstracción.
 13. Alta cohesión faltante: Mantenga métodos relacionados dentro de la misma clase.
 14. KISS (Keep It Simple, Stupid): Evite lógica compleja innecesaria. Prefiera lo simple.

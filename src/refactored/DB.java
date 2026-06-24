@@ -14,14 +14,19 @@ public class DB {
     }
 
     public void connect() {
-        System.out.println(MSG_CONNECTING + databaseName);
+        log(MSG_CONNECTING + databaseName);
     }
 
     public void query() {
-        System.out.println(MSG_QUERYING + databaseName);
+        log(MSG_QUERYING + databaseName);
     }
 
     public void disconnect() {
-        System.out.println(MSG_DISCONNECTING + databaseName);
+        log(MSG_DISCONNECTING + databaseName);
+    }
+
+    // Tópico 11: Modularidad violada - método privado centraliza la salida de mensajes
+    private void log(String message) {
+        System.out.println(message);
     }
 }

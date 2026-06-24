@@ -1,5 +1,5 @@
 
-public class DB {
+public class DB implements DatabaseService {
 
     // Tópico 3: Strings mágicos
     private static final String MSG_CONNECTING = "Connecting to ";
@@ -25,7 +25,7 @@ public class DB {
         log(MSG_DISCONNECTING + databaseName);
     }
 
-    // Tópico 11: Modularidad violada - método privado centraliza la salida de mensajes
+    // Tópico 11: Modularidad violada
     private void log(String message) {
         System.out.println(message);
     }

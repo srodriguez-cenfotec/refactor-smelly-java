@@ -28,8 +28,10 @@ Refactorización de Código en Java
 11. Modularidad violada: Separe el código en clases con una sola responsabilidad.
    - En la clase **DB.java**, se extrajo un método privado `log()` que centraliza la salida de mensajes, evitando repetir `System.out.println()` en cada método.
 12. Bajo acoplamiento: Evite dependencias fuertes. Use interfaces y abstracción.
+   - Se creó la interfaz **DatabaseService.java** para que cualquier clase que use una base de datos dependa del contrato y no de la implementación concreta `DB`.
 13. Alta cohesión faltante: Mantenga métodos relacionados dentro de la misma clase.
 14. KISS (Keep It Simple, Stupid): Evite lógica compleja innecesaria. Prefiera lo simple.
 15. Boy Scout Rule: Deje el código más limpio de como lo encontró. Elimine código muerto.
 16. Código no autodocumentado: Haga que el código se explique por sí mismo. Nombres y estructura clara.
 17. Falta de interfaces o clases base: Use interfaces para separar la definición de la implementación.
+   - Se creó la interfaz **DatabaseService.java** con los métodos `connect()`, `query()` y `disconnect()`, y **DB.java** la implementa, separando el contrato de la implementación.

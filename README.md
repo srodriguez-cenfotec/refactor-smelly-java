@@ -12,6 +12,7 @@ Refactorización de Código en Java
    - En la clase **OrderProcessor.java**, se crean constantes para valores fijos que se utilizan en las operaciones.
 5. Métodos largos: Divida métodos extensos en varios métodos con una sola responsabilidad.
    - En la clase **ReportManager.java** se divide la lógica del método **processReport()** en varios métodos, cada uno con solo una responsabilidad
+   - En la clase **OrderProcessor.java** se divide el método **calculateTotal()**, separando el cálculo de cada valor (impuesto, cargo por servicio y descuento) y la presentación de resultados en métodos independientes, cada uno con una sola responsabilidad
 6. Muchos métodos (SRP): Aplique el principio de responsabilidad única por clase.
 7. Comentarios innecesarios: Elimine comentarios que expliquen lo obvio. Use código autodocumentado.
    - En el código no se encontraban comentarios innecesarios.

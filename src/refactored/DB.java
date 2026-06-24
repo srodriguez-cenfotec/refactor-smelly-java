@@ -29,6 +29,12 @@ public class DB implements DatabaseService {
         log(MSG_DISCONNECTING + databaseName);
     }
 
+    // Tópico 13: Alta cohesión faltante - operaciones relacionadas agrupadas en la misma clase
+    public void reconnect() {
+        disconnect();
+        connect();
+    }
+
     // Tópico 11: Modularidad violada
     private void log(String message) {
         System.out.println(message);
